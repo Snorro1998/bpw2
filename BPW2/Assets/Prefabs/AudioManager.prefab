@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &956440395606125213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 956440395606125215}
+  - component: {fileID: 956440395606125214}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &956440395606125215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956440395606125213}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 206.57147, y: 144.24504, z: -149.09789}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &956440395606125214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956440395606125213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0619af7d9b90c4aad25bbf8ed8d745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: jaunty
+    clip: {fileID: 8300000, guid: 44aefe7a41123884bbf131f59f0d5220, type: 3}
+    volume: 1
+    pitch: 1
+    mixer: {fileID: 24300002, guid: b2f7bf815aab699488d68db64ef18967, type: 2}
+    loop: 1
+    source: {fileID: 0}
+  - name: engineRunning
+    clip: {fileID: 8300000, guid: 346130fe3efa0c542b5569b7e69c46ac, type: 3}
+    volume: 1
+    pitch: 1
+    mixer: {fileID: 24300002, guid: f7f3d7c7b64d8b84aac8abe8577cb8dd, type: 2}
+    loop: 1
+    source: {fileID: 0}
+  - name: engineStart
+    clip: {fileID: 8300000, guid: 2d66910bac652e145bbf444280df4a22, type: 3}
+    volume: 1
+    pitch: 1
+    mixer: {fileID: 24300002, guid: f7f3d7c7b64d8b84aac8abe8577cb8dd, type: 2}
+    loop: 0
+    source: {fileID: 0}
+  - name: honk
+    clip: {fileID: 8300000, guid: 2a544d57661a8e64abb7ad0125b3e980, type: 3}
+    volume: 1
+    pitch: 1
+    mixer: {fileID: 24300002, guid: f7f3d7c7b64d8b84aac8abe8577cb8dd, type: 2}
+    loop: 0
+    source: {fileID: 0}
