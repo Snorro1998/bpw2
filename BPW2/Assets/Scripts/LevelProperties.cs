@@ -11,6 +11,9 @@ public class LevelProperties : MonoBehaviour
     public GameObject infoPanel;
     public GameObject descPanel;
     public GameObject compPanel;
+
+    private GameObject[] PlayerUIs;
+
     GameObject cameraPivot;
     GameObject plane;
     Camera mainCam;
@@ -30,6 +33,17 @@ public class LevelProperties : MonoBehaviour
 
     private void Awake()
     {
+        if (PlayerUIs == null)
+        {
+            PlayerUIs = GameObject.FindGameObjectsWithTag("PlayerUI");
+        }
+
+        foreach (GameObject ui in PlayerUIs)
+        {
+            ui.SetActive(false);
+        }
+
+
         //AudioManager.Instance.playSound(Music);
         plane = FindObjectOfType<Plane>().gameObject;
         mainCam = Camera.main;
@@ -47,7 +61,12 @@ public class LevelProperties : MonoBehaviour
             mainCam.transform.SetParent(plane.transform);
             mainCam.transform.localPosition = new Vector3(0, 6, -18);//0,6,-15
             mainCam.transform.localRotation = new Quaternion(0, 0, 0, 1);
-            Destroy(cameraPivot);
+            //Destroy(cameraPivot);
+
+            foreach (GameObject ui in PlayerUIs)
+            {
+                ui.SetActive(true);
+            }
         }
 
         if (plane.GetComponent<Plane>().EngineRunning && infoPanel.activeSelf)

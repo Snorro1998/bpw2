@@ -7,6 +7,9 @@ TagManager:
   - Terrain
   - WaterDrop
   - Fire
+  - Tree
+  - Water
+  - PlayerUI
   layers:
   - Default
   - TransparentFX

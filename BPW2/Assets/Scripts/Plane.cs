@@ -21,6 +21,8 @@ public class Plane : MonoBehaviour
     [SerializeField]
     private Transform WaterSpawner;
     [SerializeField]
+    public Transform WaterEffect;
+    [SerializeField]
     private Transform Arrow;
 
     private Rigidbody rb;
@@ -88,6 +90,7 @@ public class Plane : MonoBehaviour
 // Start is called before the first frame update
 void Start()
     {
+        //WaterEffect.gameObject.SetActive(false);
         rb = GetComponent<Rigidbody>();
         isMissingParts = (!AilLeft || !AilRight || !ElevLeft || !ElevRight || !LeftProp || !RightProp || !Rudder);
     }
@@ -97,9 +100,34 @@ void Start()
     {
         //print(transform.position.y - vSpeed);
 
+        if (Input.GetKeyDown("t"))
+        {
+            EngineRunning = true;
+            leftEngineRunning = true;
+            rightEngineRunning = true;
+            speed = 400;
+            AudioManager.Instance.playSound("engineRunning");
+        }
+
+        if (Input.GetKeyDown("f"))
+        {
+            frozen = !frozen;
+        }
+
         vSpeed = transform.position.y;
         if (Input.GetKeyDown("m"))
         {
+            if (!EngineRunning)
+            {
+                startEngine();
+            }
+            else
+            {
+                stopEngine();
+            }
+
+            
+            /*
             if (!EngineRunning)
             {
                 EngineRunning = true;
@@ -109,7 +137,7 @@ void Start()
                     _coroutine = null;
                 }
                 _coroutine = StartCoroutine(startEngines());
-            }
+            }*/
         }
 
         if (WaterSpawner != null)
@@ -195,6 +223,37 @@ void Start()
         lift = Mathf.Clamp(rb.mass * -Physics.gravity.y * (1.5f * speed / maxSpeed), 0, Mathf.Abs(gravityVector.y)) + pitchSmooth * 500;
         liftForce = new Vector3(0, lift, 0);
         rb.AddForce(liftForce);
+    }
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        print(collision.transform.tag);
+    }*/
+
+    void startEngine()
+    {
+        //if (!EngineRunning)
+        //{
+            EngineRunning = true;
+            if (_coroutine != null)
+            {
+                StopCoroutine(_coroutine);
+                _coroutine = null;
+            }
+            _coroutine = StartCoroutine(startEngines());
+        //}
+    }
+
+    void stopEngine()
+    {
+        EngineRunning = false;
+
+        propSpeedLeft = 0;
+        propSpeedRight = 0;
+        AudioManager.Instance.stopSound("engineRunning");
+        leftEngineRunning = false;
+        rightEngineRunning = false;
+        speed = 0;
     }
 
     void setEnginePitch()
