@@ -62,33 +62,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ActivateWaterEffect.cs" />
-    <Compile Include="Assets\ArrowColor.cs" />
-    <Compile Include="Assets\PointerRotation.cs" />
+    <Compile Include="Assets\LevelDescription.cs" />
+    <Compile Include="Assets\Scripts\ActivateWaterEffect.cs" />
+    <Compile Include="Assets\Scripts\ArrowColor.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
-    <Compile Include="Assets\Scripts\Blinking.cs" />
-    <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Controller.cs" />
+    <Compile Include="Assets\Scripts\Effects\Blinking.cs" />
+    <Compile Include="Assets\Scripts\Effects\SimpleRotation.cs" />
     <Compile Include="Assets\Scripts\Fire.cs" />
-    <Compile Include="Assets\Scripts\FlightSim.cs" />
     <Compile Include="Assets\Scripts\LevelProperties.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
-    <Compile Include="Assets\Scripts\MapDisplay.cs" />
-    <Compile Include="Assets\Scripts\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
-    <Compile Include="Assets\Scripts\Noise.cs" />
     <Compile Include="Assets\Scripts\Plane.cs" />
     <Compile Include="Assets\Scripts\PlaneDetect.cs" />
-    <Compile Include="Assets\Scripts\PlaneMovement.cs" />
+    <Compile Include="Assets\Scripts\PointerRotation.cs" />
     <Compile Include="Assets\Scripts\PointingArrow.cs" />
-    <Compile Include="Assets\Scripts\SceneManagerz.cs" />
-    <Compile Include="Assets\Scripts\SimpleRotation.cs" />
     <Compile Include="Assets\Scripts\Sound.cs" />
-    <Compile Include="Assets\Scripts\StartMusic.cs" />
-    <Compile Include="Assets\Scripts\TextureGenerator.cs" />
-    <Compile Include="Assets\Scripts\WaterDrop.cs" />
-    <Compile Include="Assets\Scripts\WaterPooler.cs" />
-    <Compile Include="Assets\WaterMovement.cs" />
+    <Compile Include="Assets\Scripts\WaterMovement.cs" />
+    <Compile Include="Assets\WaterLevelUI.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

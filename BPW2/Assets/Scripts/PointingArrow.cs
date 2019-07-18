@@ -12,42 +12,23 @@ public class PointingArrow : MonoBehaviour
     public List<Transform> movePoints = new List<Transform>();
     [HideInInspector]
     public int activeTarget = 0;
-    int activeTargetOld = 0;
-    //[HideInInspector]
-    //public bool allRings = false;
+    int activeTargetOld = 1;
     bool started = false;
-
-    private GameObject levelController;
 
     private void Awake()
     {
         AddTargets();
-        levelController = FindObjectOfType<LevelProperties>().gameObject; 
     }
 
     void Update()
     {
         checkStarted();
-        rotateArrow();
         checkTargetChanged();
-    }
-
-    void rotateArrow()
-    {
-        if (movePoints != null)
-        {
-            target = movePoints[activeTarget];
-            if (arrow != null)
-            {
-                Vector3 targetPostition = new Vector3(target.position.x, target.position.y, target.position.z); //this.transform.position.y
-                arrow.transform.LookAt(targetPostition);
-            }
-        }
     }
 
     void checkStarted()
     {
-        if (levelController.GetComponent<LevelProperties>().levelStarted && !started)
+        if (LevelProperties.Instance.levelStarted && !started)
         {
             started = true;
             for (int i = 1; i < movePoints.Count; i++)
@@ -64,6 +45,8 @@ public class PointingArrow : MonoBehaviour
             movePoints[activeTargetOld].gameObject.SetActive(false);
             movePoints[activeTarget].gameObject.SetActive(true);
             activeTargetOld = activeTarget;
+            target = movePoints[activeTarget];
+            arrow.GetComponent<ArrowColor>().target = movePoints[activeTarget];
         }
     }
 

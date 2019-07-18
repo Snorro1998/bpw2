@@ -31,12 +31,6 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    /*
-    private void Start()
-    {
-        //Om te testen
-        //playSound("trololo");
-    }*/
 
     public void setPitch(string name, float pitch)
     {

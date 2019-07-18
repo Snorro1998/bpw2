@@ -32,6 +32,15 @@ public class Fire : MonoBehaviour
                 objList[i].localScale = new Vector3(objScaleList[i] * scale, objScaleList[i] * scale, objScaleList[i] * scale);
             }
         }
+
+        if (health < 20 && health > 0)
+        {
+            health -= Time.deltaTime;
+        }
+        else if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnParticleCollision(GameObject other)

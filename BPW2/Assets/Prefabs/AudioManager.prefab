@@ -53,22 +53,36 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: engineRunning
     clip: {fileID: 8300000, guid: 346130fe3efa0c542b5569b7e69c46ac, type: 3}
-    volume: 1
+    volume: 0.8
     pitch: 1
     mixer: {fileID: 24300002, guid: f7f3d7c7b64d8b84aac8abe8577cb8dd, type: 2}
     loop: 1
     source: {fileID: 0}
   - name: engineStart
     clip: {fileID: 8300000, guid: 2d66910bac652e145bbf444280df4a22, type: 3}
-    volume: 1
+    volume: 0.8
     pitch: 1
     mixer: {fileID: 24300002, guid: f7f3d7c7b64d8b84aac8abe8577cb8dd, type: 2}
     loop: 0
     source: {fileID: 0}
   - name: honk
     clip: {fileID: 8300000, guid: 2a544d57661a8e64abb7ad0125b3e980, type: 3}
+    volume: 0.8
+    pitch: 1
+    mixer: {fileID: 24300002, guid: f7f3d7c7b64d8b84aac8abe8577cb8dd, type: 2}
+    loop: 0
+    source: {fileID: 0}
+  - name: trololo
+    clip: {fileID: 8300000, guid: dbc3cdc6a25fe3e43b7a5425e979c97b, type: 3}
     volume: 1
     pitch: 1
     mixer: {fileID: 24300002, guid: f7f3d7c7b64d8b84aac8abe8577cb8dd, type: 2}
     loop: 0
+    source: {fileID: 0}
+  - name: title
+    clip: {fileID: 8300000, guid: 7280f8221d4447142bb9359d1f8ad20f, type: 3}
+    volume: 1
+    pitch: 1
+    mixer: {fileID: 24300002, guid: b2f7bf815aab699488d68db64ef18967, type: 2}
+    loop: 1
     source: {fileID: 0}

@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LevelProperties : MonoBehaviour
 {
-    public string Music;
-    public string levelDesc;
+    public static LevelProperties Instance { get; private set; }
+
+    public string music = "jaunty";
+    public string levelDesc = "";
     public bool levelStarted = false;
     public GameObject infoPanel;
     public GameObject descPanel;
@@ -33,6 +35,20 @@ public class LevelProperties : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        Controller.Instance.LoadMusic(music);
+        if (isMainMenu()) return;
         if (PlayerUIs == null)
         {
             PlayerUIs = GameObject.FindGameObjectsWithTag("PlayerUI");
@@ -42,9 +58,6 @@ public class LevelProperties : MonoBehaviour
         {
             ui.SetActive(false);
         }
-
-
-        //AudioManager.Instance.playSound(Music);
         plane = FindObjectOfType<Plane>().gameObject;
         mainCam = Camera.main;
         cameraPivot = mainCam.transform.parent.gameObject;
@@ -52,6 +65,7 @@ public class LevelProperties : MonoBehaviour
 
     private void Update()
     {
+        if (isMainMenu()) return;
         if (Input.GetKeyDown("space") && !levelStarted)
         {
             levelStarted = true;
@@ -69,7 +83,7 @@ public class LevelProperties : MonoBehaviour
             }
         }
 
-        if (plane.GetComponent<Plane>().EngineRunning && infoPanel.activeSelf)
+        if (plane.GetComponent<Plane>().EngineRunning /*&& infoPanel.activeSelf*/)
         {
             infoPanel.SetActive(false);
         }
@@ -84,5 +98,10 @@ public class LevelProperties : MonoBehaviour
             }
             _coroutine = StartCoroutine(LevelComplete());
         }
+    }
+
+    private bool isMainMenu()
+    {
+        return (SceneManager.GetActiveScene().buildIndex == 0);
     }
 }

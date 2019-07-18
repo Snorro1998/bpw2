@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  damage: 2
+  damage: 6
 --- !u!1 &8301315919625887401
 GameObject:
   m_ObjectHideFlags: 0

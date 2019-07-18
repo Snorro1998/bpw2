@@ -13,7 +13,7 @@ ScriptsOnlyBuild:
     - Blinking
     - Controller
     - Fire
-    - FlightSim
+    - LevelDescription
     - LevelProperties
     - MainMenu
     - Plane
@@ -21,7 +21,7 @@ ScriptsOnlyBuild:
     - PointerRotation
     - PointingArrow
     - SimpleRotation
-    - StartMusic
+    - WaterLevelUI
     - WaterMovement
     Unity.TextMeshPro.dll:
     - TMPro.TMP_ColorGradient
@@ -33,16 +33,15 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.AspectRatioFitter
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
@@ -79,6 +78,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
     - Class: 83
       Script: {instanceID: 0}
     - Class: 91
@@ -90,51 +91,51 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9234}
+      Script: {instanceID: 9240}
     - Class: 114
-      Script: {instanceID: 9328}
+      Script: {instanceID: 9332}
     - Class: 114
-      Script: {instanceID: 9354}
+      Script: {instanceID: 9358}
     - Class: 114
-      Script: {instanceID: 9360}
+      Script: {instanceID: 9364}
     - Class: 114
-      Script: {instanceID: 9366}
+      Script: {instanceID: 9370}
     - Class: 114
-      Script: {instanceID: 9374}
+      Script: {instanceID: 9378}
     - Class: 114
-      Script: {instanceID: 9410}
+      Script: {instanceID: 9414}
     - Class: 114
-      Script: {instanceID: 9412}
+      Script: {instanceID: 9416}
     - Class: 114
-      Script: {instanceID: 9450}
+      Script: {instanceID: 9454}
     - Class: 114
-      Script: {instanceID: 9814}
+      Script: {instanceID: 9464}
+    - Class: 114
+      Script: {instanceID: 9630}
     - Class: 114
       Script: {instanceID: 9872}
     - Class: 114
-      Script: {instanceID: 9916}
+      Script: {instanceID: 9926}
     - Class: 114
-      Script: {instanceID: 9960}
+      Script: {instanceID: 9964}
     - Class: 114
-      Script: {instanceID: 9962}
+      Script: {instanceID: 9966}
     - Class: 114
-      Script: {instanceID: 10384}
+      Script: {instanceID: 10070}
     - Class: 114
-      Script: {instanceID: 10394}
+      Script: {instanceID: 10266}
     - Class: 114
-      Script: {instanceID: 10646}
+      Script: {instanceID: 10390}
     - Class: 114
-      Script: {instanceID: 12932}
+      Script: {instanceID: 10400}
     - Class: 114
-      Script: {instanceID: 12934}
+      Script: {instanceID: 10480}
     - Class: 114
-      Script: {instanceID: 12942}
+      Script: {instanceID: 10532}
     - Class: 114
-      Script: {instanceID: 12946}
+      Script: {instanceID: 10544}
     - Class: 114
-      Script: {instanceID: 12948}
-    - Class: 114
-      Script: {instanceID: 33370}
+      Script: {instanceID: 10652}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -210,9 +211,9 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 83
+    - Class: 82
       Script: {instanceID: 0}
-    - Class: 90
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
@@ -223,34 +224,68 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9234}
+      Script: {instanceID: 9240}
     - Class: 114
-      Script: {instanceID: 9354}
+      Script: {instanceID: 9358}
     - Class: 114
-      Script: {instanceID: 9360}
+      Script: {instanceID: 9364}
     - Class: 114
-      Script: {instanceID: 9366}
+      Script: {instanceID: 9370}
     - Class: 114
-      Script: {instanceID: 9374}
-    - Class: 114
-      Script: {instanceID: 9410}
+      Script: {instanceID: 9378}
     - Class: 114
       Script: {instanceID: 9412}
     - Class: 114
-      Script: {instanceID: 9450}
+      Script: {instanceID: 9414}
+    - Class: 114
+      Script: {instanceID: 9416}
+    - Class: 114
+      Script: {instanceID: 9454}
+    - Class: 114
+      Script: {instanceID: 9464}
+    - Class: 114
+      Script: {instanceID: 9630}
     - Class: 114
       Script: {instanceID: 9872}
     - Class: 114
-      Script: {instanceID: 9874}
+      Script: {instanceID: 9914}
     - Class: 114
-      Script: {instanceID: 10232}
+      Script: {instanceID: 9926}
     - Class: 114
-      Script: {instanceID: 10384}
+      Script: {instanceID: 9964}
     - Class: 114
-      Script: {instanceID: 10646}
+      Script: {instanceID: 10070}
+    - Class: 114
+      Script: {instanceID: 10118}
+    - Class: 114
+      Script: {instanceID: 10238}
+    - Class: 114
+      Script: {instanceID: 10266}
+    - Class: 114
+      Script: {instanceID: 10268}
+    - Class: 114
+      Script: {instanceID: 10390}
+    - Class: 114
+      Script: {instanceID: 10400}
+    - Class: 114
+      Script: {instanceID: 10480}
+    - Class: 114
+      Script: {instanceID: 10532}
+    - Class: 114
+      Script: {instanceID: 10544}
+    - Class: 114
+      Script: {instanceID: 10586}
+    - Class: 114
+      Script: {instanceID: 10652}
+    - Class: 114
+      Script: {instanceID: 38602}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 135
+      Script: {instanceID: 0}
+    - Class: 136
       Script: {instanceID: 0}
     - Class: 154
       Script: {instanceID: 0}
@@ -258,9 +293,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
+    - Class: 193
+      Script: {instanceID: 0}
     - Class: 198
       Script: {instanceID: 0}
     - Class: 199
+      Script: {instanceID: 0}
+    - Class: 205
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -271,6 +310,12 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 226
+      Script: {instanceID: 0}
+    - Class: 227
+      Script: {instanceID: 0}
+    - Class: 228
       Script: {instanceID: 0}
     - Class: 241
       Script: {instanceID: 0}
@@ -308,37 +353,43 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9352}
+      Script: {instanceID: 9346}
     - Class: 114
-      Script: {instanceID: 9354}
+      Script: {instanceID: 9356}
     - Class: 114
-      Script: {instanceID: 9360}
+      Script: {instanceID: 9358}
     - Class: 114
-      Script: {instanceID: 9366}
+      Script: {instanceID: 9364}
     - Class: 114
-      Script: {instanceID: 9374}
+      Script: {instanceID: 9370}
     - Class: 114
-      Script: {instanceID: 9408}
+      Script: {instanceID: 9378}
     - Class: 114
-      Script: {instanceID: 9410}
+      Script: {instanceID: 9412}
     - Class: 114
-      Script: {instanceID: 9768}
+      Script: {instanceID: 9414}
     - Class: 114
-      Script: {instanceID: 10108}
+      Script: {instanceID: 9416}
+    - Class: 114
+      Script: {instanceID: 9454}
+    - Class: 114
+      Script: {instanceID: 9772}
     - Class: 114
       Script: {instanceID: 10118}
     - Class: 114
-      Script: {instanceID: 10218}
+      Script: {instanceID: 10128}
     - Class: 114
-      Script: {instanceID: 10260}
+      Script: {instanceID: 10224}
     - Class: 114
-      Script: {instanceID: 10504}
+      Script: {instanceID: 10268}
     - Class: 114
-      Script: {instanceID: 10536}
+      Script: {instanceID: 10510}
     - Class: 114
-      Script: {instanceID: 10578}
+      Script: {instanceID: 10544}
     - Class: 114
-      Script: {instanceID: 10646}
+      Script: {instanceID: 10586}
+    - Class: 114
+      Script: {instanceID: 10652}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -360,12 +411,6 @@ ScriptsOnlyBuild:
     - Class: 245
       Script: {instanceID: 0}
   scriptHashData:
-  - hash:
-      serializedVersion: 2
-      Hash: 9b8e95dd91410b022d976f5b8c55ed08
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CameraFollow
   - hash:
       serializedVersion: 2
       Hash: 1335cdef1059f1a4480bf642d36f497e
@@ -614,10 +659,16 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 656c0a6b6949e7c484f89ca212f7ce2e
+      Hash: 9f0b0ed26d0896f2abe91924fb468eeb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LevelProperties
+  - hash:
+      serializedVersion: 2
+      Hash: 357dc9516c87a9d2caf5c0f50c455e56
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: UnityStandardAssets.Water
+    className: WaterBase
   - hash:
       serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
@@ -824,10 +875,10 @@ ScriptsOnlyBuild:
     className: AnimationTrack
   - hash:
       serializedVersion: 2
-      Hash: 9426c442ff018248a5e4bba45389f96d
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: WaterPooler
+    className: LevelDescription
   - hash:
       serializedVersion: 2
       Hash: 00274a21279f5cb831ce20f895049e38
@@ -872,18 +923,6 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: StartMusic
-  - hash:
-      serializedVersion: 2
-      Hash: 1943ef9dd35d303385153d6889e38847
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlaneMovement
-  - hash:
-      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -894,12 +933,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SimpleRotation
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: FlightSim
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -920,10 +953,22 @@ ScriptsOnlyBuild:
     className: AnalyticsEventTrackerEditor
   - hash:
       serializedVersion: 2
+      Hash: 14d684e5eb706041b258044f3a2d3861
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: UnityStandardAssets.Water
+    className: PlanarReflection
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Movement
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: UnityStandardAssets.Water
+    className: Displace
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -950,10 +995,28 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: UnityStandardAssets.Water
+    className: WaterBasic
+  - hash:
+      serializedVersion: 2
+      Hash: 97a580c59cad3623a01bbf5fb2d7fa93
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: UnityStandardAssets.Water
+    className: SpecularLighting
+  - hash:
+      serializedVersion: 2
       Hash: 3f8d7b92a6be3c715e55d5cfa7cc8384
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalReceiver
+  - hash:
+      serializedVersion: 2
+      Hash: c239250f2f7641ce897064c7bd4173b0
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: UnityStandardAssets.Water
+    className: Water
   - hash:
       serializedVersion: 2
       Hash: 4a0369cd366c126cd420018a4ac01f32
@@ -972,12 +1035,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationPlayableAsset
-  - hash:
-      serializedVersion: 2
-      Hash: 8afa573f1bb10d344cc25fd7934c9513
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SceneManagerz
   - hash:
       serializedVersion: 2
       Hash: 88cc9df3c6fc697bfbeacd24c0d6f2d7
@@ -1022,12 +1079,6 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 5213e35f2db0a4365d780635f810f311
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MapDisplay
-  - hash:
-      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1038,6 +1089,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Fire
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ActivateWaterEffect
   - hash:
       serializedVersion: 2
       Hash: ee0cef6caaac8ae485bfa82f000f0f7b
@@ -1058,28 +1115,22 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
-      Hash: 09aebc74ee5a03840f39238a4cd739fb
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: WaterDrop
-  - hash:
-      serializedVersion: 2
-      Hash: d1e1531d8d5ba6d816b37e02218b1249
+      Hash: f0a94cc206f81ea33cf892d187494f35
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Plane
   - hash:
       serializedVersion: 2
-      Hash: e7630f6f223be1a4753c07fee6891779
+      Hash: 7293eb02c9a8276be24c147530d44850
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ArrowColor
   - hash:
       serializedVersion: 2
-      Hash: be58856fe656d25832c02c4e7e7ba1c2
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MapGenerator
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: UnityStandardAssets.Water
+    className: GerstnerDisplace
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -1092,6 +1143,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_StyleSheet
+  - hash:
+      serializedVersion: 2
+      Hash: 698812e8d71fd38ac0f66f7a70a25fb5
+    assemblyName: Assembly-CSharp-firstpass.dll
+    namespaceName: UnityStandardAssets.Water
+    className: WaterTile
   - hash:
       serializedVersion: 2
       Hash: ecc3efdae9b083e382e1041d01adcd1f
@@ -1136,58 +1193,10 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: 357dc9516c87a9d2caf5c0f50c455e56
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Water
-    className: WaterBase
-  - hash:
-      serializedVersion: 2
-      Hash: 14d684e5eb706041b258044f3a2d3861
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Water
-    className: PlanarReflection
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Water
-    className: Displace
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Water
-    className: WaterBasic
-  - hash:
-      serializedVersion: 2
-      Hash: 97a580c59cad3623a01bbf5fb2d7fa93
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Water
-    className: SpecularLighting
-  - hash:
-      serializedVersion: 2
-      Hash: c239250f2f7641ce897064c7bd4173b0
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Water
-    className: Water
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Water
-    className: GerstnerDisplace
-  - hash:
-      serializedVersion: 2
-      Hash: 698812e8d71fd38ac0f66f7a70a25fb5
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Water
-    className: WaterTile
-  - hash:
-      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: ActivateWaterEffect
+    className: WaterLevelUI
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMenu.unity

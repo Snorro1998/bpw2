@@ -3319,7 +3319,7 @@ RectTransform:
   m_GameObject: {fileID: 2142988959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 677436417}
   m_RootOrder: 0
@@ -3516,21 +3516,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 956440395606125214, guid: 538af4655b9f1a64195ef88fd8558cd8,
-        type: 3}
-      propertyPath: sounds.Array.data[1].volume
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 956440395606125214, guid: 538af4655b9f1a64195ef88fd8558cd8,
-        type: 3}
-      propertyPath: sounds.Array.data[2].volume
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 956440395606125214, guid: 538af4655b9f1a64195ef88fd8558cd8,
-        type: 3}
-      propertyPath: sounds.Array.data[3].volume
-      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 538af4655b9f1a64195ef88fd8558cd8, type: 3}

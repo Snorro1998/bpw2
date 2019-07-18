@@ -17,7 +17,10 @@ public class Plane : MonoBehaviour
     private Transform SmokeLeft, SmokeRight;
     [SerializeField]
     private Transform Rudder;
+    [SerializeField]
+    private Transform FloatLeft, FloatRight;
 
+    [Header("Other Parts")]
     [SerializeField]
     private Transform WaterSpawner;
     [SerializeField]
@@ -26,8 +29,10 @@ public class Plane : MonoBehaviour
     private Transform Arrow;
 
     private Rigidbody rb;
+        
 
     [Header("Variables")]
+    public bool debug = false;
     public bool EngineRunning = false;
     private bool isMissingParts = false;
 
@@ -35,14 +40,14 @@ public class Plane : MonoBehaviour
 
     public float thrust, speed = 0;
 
-    public float pitch, roll, yaw = 0;
-    float ElevAngleSmooth, YawAngleSmooth, RollAngleSmooth = 0;
-    public float pitchSmooth = 0;
+    //private float pitch, roll, yaw = 0;
+    private float ElevAngleSmooth, YawAngleSmooth, RollAngleSmooth = 0;
+    private float pitchSmooth = 0;
 
-    public float lift = 0;
+    private float lift = 0;
     private Vector3 gravityVector, liftForce = new Vector3(0, 0, 0);
 
-    public float propSpeedLeft, propSpeedRight = 0;
+    private float propSpeedLeft, propSpeedRight = 0;
     private float propMinSpeed = 1200f;
     private float propMaxSpeed = 2400f;
 
@@ -52,27 +57,25 @@ public class Plane : MonoBehaviour
 
     float maxAngle = 20;
 
-    bool isGrounded = false;
-
     private float enginePitch, enginePitchOld;
-
-    private float vSpeed = 0;
+    public float waterLevel = 0;
 
     public bool frozen = false;
+    public bool onWater = false;
+
+    private float floatAngle = 0;
+    private float floatMaxAngle = 90;
 
     private Coroutine _coroutine;
 
-    private IEnumerator startEngines() {
+    private IEnumerator startEngines()
+    {
         propSpeedLeft = 200;
         AudioManager.Instance.playSound("engineStart");
         yield return new WaitForSeconds(1.8f);
         propSpeedLeft = propMinSpeed;
         leftEngineRunning = true;
         SmokeLeft.gameObject.SetActive(true);
-        //waarom werkt dit niet?
-        //Instantiate(SmokeCloud, LeftProp.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y + 180, transform.rotation.z)/*transform.rotation + new Quaternion Quaternion.Euler(1,1,1)*/);//SmokeCloud.transform.rotation);
-        //GameObject smokePuff = Instantiate(SmokeCloud, LeftProp.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y /*+ 180*/, transform.rotation.z));
-        //smokePuff.transform.Rotate(0, 180, 0);
         AudioManager.Instance.playSound("engineRunning");
         yield return new WaitForSeconds(1.5f);
         SmokeLeft.gameObject.SetActive(false);
@@ -85,64 +88,21 @@ public class Plane : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         SmokeRight.gameObject.SetActive(false);
     }
-    
 
-// Start is called before the first frame update
-void Start()
+    void Start()
     {
-        //WaterEffect.gameObject.SetActive(false);
         rb = GetComponent<Rigidbody>();
-        isMissingParts = (!AilLeft || !AilRight || !ElevLeft || !ElevRight || !LeftProp || !RightProp || !Rudder);
+        isMissingParts = (!AilLeft || !AilRight || !ElevLeft || !ElevRight || !LeftProp || !RightProp || !Rudder || !FloatLeft || !FloatRight);
     }
-
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
-        //print(transform.position.y - vSpeed);
-
-        if (Input.GetKeyDown("t"))
-        {
-            EngineRunning = true;
-            leftEngineRunning = true;
-            rightEngineRunning = true;
-            speed = 400;
-            AudioManager.Instance.playSound("engineRunning");
-        }
-
-        if (Input.GetKeyDown("f"))
-        {
-            frozen = !frozen;
-        }
-
-        vSpeed = transform.position.y;
-        if (Input.GetKeyDown("m"))
-        {
-            if (!EngineRunning)
-            {
-                startEngine();
-            }
-            else
-            {
-                stopEngine();
-            }
-
-            
-            /*
-            if (!EngineRunning)
-            {
-                EngineRunning = true;
-                if (_coroutine != null)
-                {
-                    StopCoroutine(_coroutine);
-                    _coroutine = null;
-                }
-                _coroutine = StartCoroutine(startEngines());
-            }*/
-        }
+        checkOnWater();
+        checkInput();
 
         if (WaterSpawner != null)
         {
-            WaterSpawner.gameObject.SetActive(Input.GetKey("q"));
+            WaterSpawner.gameObject.SetActive(Input.GetKey("q") && waterLevel > 0);
         }
 
         if (leftEngineRunning && rightEngineRunning)
@@ -150,20 +110,22 @@ void Start()
             thrust = /*Input.GetAxis("Throttle") * */12;
             speed = Mathf.Clamp(speed + thrust * Time.deltaTime, 0, maxSpeed);
         }
-        
 
-        pitch = Input.GetAxis("Pitch");
-        roll = Input.GetAxis("Roll") * maxAngle;
-        yaw = Input.GetAxis("Yaw");
+        float terrainHeight = Terrain.activeTerrain.SampleHeight(transform.position);
+
+        if (terrainHeight > transform.position.y)
+        {
+            transform.position = new Vector3(transform.position.x, terrainHeight, transform.position.z);
+        }
+
+
+        float pitch = Input.GetAxis("Pitch");
+        float roll = Input.GetAxis("Roll") * maxAngle;
+        float yaw = Input.GetAxis("Yaw");
 
         float ElevAngle = -pitch * maxAngle;
         float YawAngle = yaw * maxAngle;
-        float RollAngle = -YawAngle;
-        
-        if (transform.position.y < 30)
-        {
-            RollAngle = 0;
-        }
+        float RollAngle = transform.position.y - terrainHeight > 30 ? -YawAngle : 0;
 
         ElevAngleSmooth = Mathf.Lerp(ElevAngleSmooth, ElevAngle, 2 * Time.deltaTime);
         YawAngleSmooth = Mathf.Lerp(YawAngleSmooth, YawAngle, 2 * Time.deltaTime);
@@ -178,7 +140,7 @@ void Start()
         rotY = transform.rotation.eulerAngles.y + speed * YawAngleSmooth * Time.deltaTime / 50;
         rotZ = Mathf.Clamp(RollAngleSmooth, -20, 20);
 
-        
+
 
         if (Mathf.Abs(rotX) < .1 || rotX + 0.1f >= 360 /*|| lift < 8000*/)
         {
@@ -195,18 +157,53 @@ void Start()
         if (!frozen)
         {
             transform.rotation = Quaternion.Euler(rotX, rotY, rotZ);
-            transform.Translate(0, 0, speed * Time.deltaTime);
+
+            //transform.Translate(0, 0, speed * Time.deltaTime);
+
+            movePlane(1, 0);
         }
-        
+
 
         float rotPitch = Mathf.Clamp(ElevAngleSmooth * Time.deltaTime, -20, 20);
 
-        //transform.Rotate(rotPitch, speed * YawAngleSmooth * Time.deltaTime / 50, 0);
-
-        
         rotX = transform.rotation.eulerAngles.x;
 
         setEnginePitch();
+    }
+
+    void checkInput()
+    {
+        if (!LevelProperties.Instance.levelStarted) return;
+        if (Input.GetKeyDown("t"))
+        {
+            EngineRunning = true;
+            leftEngineRunning = true;
+            rightEngineRunning = true;
+            speed = 400;
+            AudioManager.Instance.playSound("engineRunning");
+        }
+
+        if (Input.GetKeyDown("v"))
+        {
+            frozen = !frozen;
+        }
+
+        if (Input.GetKeyDown("m"))
+        {
+            if (!EngineRunning)
+            {
+                startEngine();
+            }
+            else
+            {
+                stopEngine();
+            }
+        }
+
+        if (Input.GetKey("q"))
+        {
+            waterLevel = Mathf.Max(waterLevel - 10 * Time.deltaTime, 0);
+        }
     }
 
     public void disableArrow()
@@ -224,24 +221,26 @@ void Start()
         liftForce = new Vector3(0, lift, 0);
         rb.AddForce(liftForce);
     }
-    /*
+
     private void OnCollisionEnter(Collision collision)
     {
-        print(collision.transform.tag);
-    }*/
+        if (debug)
+        {
+            print("Gameobject: " + collision.gameObject);
+            print("Tag: " + collision.transform.tag);
+            print("Layer: " + collision.gameObject.layer);
+        }
+    }
 
     void startEngine()
     {
-        //if (!EngineRunning)
-        //{
-            EngineRunning = true;
-            if (_coroutine != null)
-            {
-                StopCoroutine(_coroutine);
-                _coroutine = null;
-            }
-            _coroutine = StartCoroutine(startEngines());
-        //}
+        EngineRunning = true;
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+            _coroutine = null;
+        }
+        _coroutine = StartCoroutine(startEngines());
     }
 
     void stopEngine()
@@ -256,6 +255,26 @@ void Start()
         speed = 0;
     }
 
+    void checkOnWater()
+    {
+        if (onWater)
+        {
+            if (!WaterEffect.gameObject.activeSelf)
+            {
+                WaterEffect.gameObject.SetActive(true);
+            }
+            waterLevel = Mathf.Min(waterLevel + 10 * Time.deltaTime, 100);
+        }
+
+        else
+        {
+            if (WaterEffect.gameObject.activeSelf)
+            {
+                WaterEffect.gameObject.SetActive(false);
+            }
+        }
+    }
+
     void setEnginePitch()
     {
         enginePitch = MathMap(1, 2, 0, maxSpeed, speed);
@@ -263,7 +282,7 @@ void Start()
         {
             enginePitchOld = enginePitch;
             AudioManager.Instance.setPitch("engineRunning", enginePitch);
-        } 
+        }
     }
 
     void rotateParts()
@@ -277,6 +296,11 @@ void Start()
             AilLeft.localRotation = Quaternion.Euler(RollAngleSmooth, 0, 0);
             AilRight.localRotation = Quaternion.Euler(-RollAngleSmooth, 0, 0);
             Rudder.localRotation = Quaternion.Euler(0, YawAngleSmooth, 0);
+
+            floatAngle = onWater ? Mathf.Min(floatAngle + 90 * Time.deltaTime, floatMaxAngle) : Mathf.Max(floatAngle - 90 * Time.deltaTime, 0);
+
+            FloatLeft.localRotation = Quaternion.Euler(0, 0, floatAngle);
+            FloatRight.localRotation = Quaternion.Euler(0, 0, -floatAngle);
         }
     }
 
@@ -300,4 +324,23 @@ void Start()
             return outPutHigh;
         return (outPutHigh - outPutLow) * ((value - inputLow) / (inputHigh - inputLow)) + outPutLow;
     }
+
+    void movePlane(float inputY,float inputX)
+    {
+        Vector3 forwardMovement = (transform.forward * inputY * speed * Time.deltaTime);
+        Vector3 sidewaysMovement = (transform.right * inputX * speed * Time.deltaTime);
+
+       rb.MovePosition(gameObject.transform.position + (forwardMovement) + (sidewaysMovement));
+
+        //dit moet het doen
+        //je moet althans wel nog deze functie oproepen maar dat weet je wel en hem ff goed instellen
+        //goed dat je bezig bent met unity man documenteer al je progress en je resultaten en dat moet je laten zien op je herkansing man
+        //dan heb je veel kans om alsnog door te gaan met HKU
+        //ja bedankt man, zal ik zeker doen. top, gozer ik ga weer veel succes als je me nodig hebt ik kan eind volgende week weer helpen en btw
+        // 9 augustus afrijden examen like a baus
+        //goed bezig succes ik ga weer
+        //ja bedankt voor de moeite.np brother je bent een goeie camaraad doe ik het voor (Y) < duimpje in fb taal XD ltr
+    }
+
+
 }
