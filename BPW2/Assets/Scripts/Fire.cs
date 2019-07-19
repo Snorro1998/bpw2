@@ -6,6 +6,7 @@ public class Fire : MonoBehaviour
 {
     public float health = 100f;
     public float damage = 2f;
+    public float extinquishSpeed = 2f;
     private float healthPrev;
 
     List<Transform> objList = new List<Transform>();
@@ -33,9 +34,9 @@ public class Fire : MonoBehaviour
             }
         }
 
-        if (health < 20 && health > 0)
+        if (health < 25 && health > 0)
         {
-            health -= Time.deltaTime;
+            health -= extinquishSpeed * Time.deltaTime;
         }
         else if (health <= 0)
         {

@@ -28,6 +28,9 @@ public class Plane : MonoBehaviour
     [SerializeField]
     private Transform Arrow;
 
+    private GameObject WaterEffectLeft;
+    private GameObject WaterEffectRight;
+
     private Rigidbody rb;
         
 
@@ -93,6 +96,11 @@ public class Plane : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         isMissingParts = (!AilLeft || !AilRight || !ElevLeft || !ElevRight || !LeftProp || !RightProp || !Rudder || !FloatLeft || !FloatRight);
+        if (!isMissingParts)
+        {
+            WaterEffectLeft = FloatLeft.GetChild(0).gameObject;
+            WaterEffectRight = FloatRight.GetChild(0).gameObject;
+        }
     }
     
     void FixedUpdate()
@@ -102,7 +110,7 @@ public class Plane : MonoBehaviour
 
         if (WaterSpawner != null)
         {
-            WaterSpawner.gameObject.SetActive(Input.GetKey("q") && waterLevel > 0);
+            WaterSpawner.gameObject.SetActive(Input.GetKey("l") && waterLevel > 0);
         }
 
         if (leftEngineRunning && rightEngineRunning)
@@ -200,7 +208,7 @@ public class Plane : MonoBehaviour
             }
         }
 
-        if (Input.GetKey("q"))
+        if (Input.GetKey("l"))
         {
             waterLevel = Mathf.Max(waterLevel - 10 * Time.deltaTime, 0);
         }
@@ -263,7 +271,7 @@ public class Plane : MonoBehaviour
             {
                 WaterEffect.gameObject.SetActive(true);
             }
-            waterLevel = Mathf.Min(waterLevel + 10 * Time.deltaTime, 100);
+            waterLevel = Mathf.Min(waterLevel + 15 * Time.deltaTime, 100);
         }
 
         else
@@ -301,6 +309,20 @@ public class Plane : MonoBehaviour
 
             FloatLeft.localRotation = Quaternion.Euler(0, 0, floatAngle);
             FloatRight.localRotation = Quaternion.Euler(0, 0, -floatAngle);
+
+            WaterEffectLeft.SetActive(floatAngle >= 80 ? true : false);
+            WaterEffectRight.SetActive(floatAngle >= 80 ? true : false);
+            /*
+            if (floatAngle >= 90)
+            {
+                WaterEffectLeft.SetActive(true);
+                WaterEffectRight.SetActive(true);
+            }
+            else
+            {
+                FloatLeft.transform.GetChild(0).gameObject.SetActive(false);
+                FloatRight.transform.GetChild(0).gameObject.SetActive(false);
+            }*/
         }
     }
 
