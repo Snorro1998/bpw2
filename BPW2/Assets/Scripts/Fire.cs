@@ -14,6 +14,10 @@ public class Fire : MonoBehaviour
 
     private void Awake()
     {
+        transform.parent.GetComponent<FireManager>().nFires += 1;
+        //werkte spontaan niet meer
+        //FireManager.Instance.nFires += 1;
+
         foreach (Transform target in transform)
         {
             objList.Add(target);
@@ -47,5 +51,10 @@ public class Fire : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         health = Mathf.Max(0f, health - damage);
+    }
+
+    private void OnDestroy()
+    {
+        FireManager.Instance.nFires -= 1;
     }
 }

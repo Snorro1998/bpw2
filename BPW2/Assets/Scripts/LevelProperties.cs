@@ -20,7 +20,8 @@ public class LevelProperties : MonoBehaviour
     GameObject plane;
     Camera mainCam;
 
-    public bool levelComplete = false;
+    public bool levelCompleted = false;
+    private bool levelCompActive = false;
 
     private Coroutine _coroutine;
 
@@ -82,15 +83,15 @@ public class LevelProperties : MonoBehaviour
                 ui.SetActive(true);
             }
         }
-
-        if (plane.GetComponent<Plane>().EngineRunning /*&& infoPanel.activeSelf*/)
+        /*
+        if (plane.GetComponent<Plane>().EngineRunning /*&& infoPanel.activeSelf)
         {
             infoPanel.SetActive(false);
-        }
+        }*/
 
-        if (levelComplete)
+        if (levelCompleted && !levelCompActive)
         {
-            levelComplete = false;
+            levelCompActive = true;
             if (_coroutine != null)
             {
                 StopCoroutine(_coroutine);

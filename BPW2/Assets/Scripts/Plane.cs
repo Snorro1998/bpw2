@@ -200,17 +200,19 @@ public class Plane : MonoBehaviour
         {
             if (!EngineRunning)
             {
+                LevelProperties.Instance.infoPanel.GetComponent<Blinking>().hideInfo();
                 startEngine();
             }
-            else
+            /*else
             {
                 stopEngine();
-            }
+            }*/
         }
 
-        if (Input.GetKey("l"))
+        if (Input.GetKey("l") && EngineRunning)
         {
             waterLevel = Mathf.Max(waterLevel - 10 * Time.deltaTime, 0);
+            LevelProperties.Instance.infoPanel.GetComponent<Blinking>().hideInfo();
         }
     }
 
@@ -234,9 +236,15 @@ public class Plane : MonoBehaviour
     {
         if (debug)
         {
+            /*als ie tegen een boom knalt, returnt hij telkens het terrain-tag ipv die van de boom
             print("Gameobject: " + collision.gameObject);
             print("Tag: " + collision.transform.tag);
-            print("Layer: " + collision.gameObject.layer);
+            print("Layer: " + collision.gameObject.layer);*/
+
+            Vector3 orthogonalVector = collision.contacts[0].point - transform.position;
+            float collisionAngle = Vector3.Angle(orthogonalVector, rb.velocity);
+
+            print("Collision angle: " + collisionAngle);
         }
     }
 
@@ -272,6 +280,7 @@ public class Plane : MonoBehaviour
                 WaterEffect.gameObject.SetActive(true);
             }
             waterLevel = Mathf.Min(waterLevel + 15 * Time.deltaTime, 100);
+            LevelProperties.Instance.infoPanel.GetComponent<Blinking>().hideInfo();
         }
 
         else
@@ -309,7 +318,7 @@ public class Plane : MonoBehaviour
 
             FloatLeft.localRotation = Quaternion.Euler(0, 0, floatAngle);
             FloatRight.localRotation = Quaternion.Euler(0, 0, -floatAngle);
-
+            
             WaterEffectLeft.SetActive(floatAngle >= 80 ? true : false);
             WaterEffectRight.SetActive(floatAngle >= 80 ? true : false);
             /*

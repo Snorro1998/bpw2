@@ -17,7 +17,7 @@ public class PlaneDetect : MonoBehaviour
             }
             else
             {
-                FindObjectOfType<LevelProperties>().levelComplete = true;
+                FindObjectOfType<LevelProperties>().levelCompleted = true;
                 //GetComponentInParent<PointingArrow>().allRings = true;
                 //Destroy(gameObject);
             }
