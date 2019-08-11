@@ -59,9 +59,20 @@ public class LevelProperties : MonoBehaviour
         {
             ui.SetActive(false);
         }
-        plane = FindObjectOfType<Plane>().gameObject;
+
+        if (FindObjectOfType<Plane>() != null)
+        {
+            plane = FindObjectOfType<Plane>().gameObject;
+        }
+        
         mainCam = Camera.main;
-        cameraPivot = mainCam.transform.parent.gameObject;
+
+        if (mainCam.transform.parent != null)
+        {
+            cameraPivot = mainCam.transform.parent.gameObject;
+        }
+
+        
     }
 
     private void Update()

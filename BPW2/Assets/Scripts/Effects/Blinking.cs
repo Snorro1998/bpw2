@@ -9,7 +9,7 @@ public class Blinking : MonoBehaviour
     private TextMeshProUGUI infoTxt;
 
     public GameObject infoBox;
-    private bool hidden = false;
+    private bool hidden = true;
 
     private Coroutine _coroutine;
     private IEnumerator toggle()
@@ -37,13 +37,16 @@ public class Blinking : MonoBehaviour
 
     public void showInfo()
     {
-        hidden = false;
-        if (_coroutine != null)
+        if (hidden)
         {
-            StopCoroutine(_coroutine);
-            _coroutine = null;
+            hidden = false;
+            if (_coroutine != null)
+            {
+                StopCoroutine(_coroutine);
+                _coroutine = null;
+            }
+            _coroutine = StartCoroutine(toggle());
         }
-        _coroutine = StartCoroutine(toggle());
     }
 
     public void hideInfo()

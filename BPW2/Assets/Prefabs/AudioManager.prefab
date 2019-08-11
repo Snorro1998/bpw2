@@ -72,12 +72,12 @@ MonoBehaviour:
     mixer: {fileID: 24300002, guid: f7f3d7c7b64d8b84aac8abe8577cb8dd, type: 2}
     loop: 0
     source: {fileID: 0}
-  - name: trololo
-    clip: {fileID: 8300000, guid: dbc3cdc6a25fe3e43b7a5425e979c97b, type: 3}
+  - name: gameComplete
+    clip: {fileID: 8300000, guid: 1551349591bed7e409f1fa7b5991e291, type: 3}
     volume: 1
     pitch: 1
     mixer: {fileID: 24300002, guid: f7f3d7c7b64d8b84aac8abe8577cb8dd, type: 2}
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: title
     clip: {fileID: 8300000, guid: 7280f8221d4447142bb9359d1f8ad20f, type: 3}
